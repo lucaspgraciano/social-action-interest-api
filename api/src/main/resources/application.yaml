@@ -3,3 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/social-actions-interest
     username: postgres
     password: postgres
+
+server:
+  servlet:
+    contextPath: /api
