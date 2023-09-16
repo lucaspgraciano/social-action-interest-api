@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "cf0b6be9-a6d2-4bea-8549-8c979f6bf4f1",
+		"name": "Pantanal Dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22991177"
+	},
+	"item": [
+		{
+			"name": "Social Action Interest",
+			"item": [
+				{
+					"name": "Social Actions",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"NOME\",\n    \"description\": \"description\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/social-actions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"social-actions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "find all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/social-actions",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"social-actions"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "BA",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/social-actions/11",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"social-actions",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/social-actions/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"social-actions",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
