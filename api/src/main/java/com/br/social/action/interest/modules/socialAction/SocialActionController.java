@@ -1,11 +1,11 @@
 package com.br.social.action.interest.modules.socialAction;
 
-import com.br.social.action.interest.services.create.CreateSocialActionRequest;
-import com.br.social.action.interest.services.create.CreateSocialActionResponse;
-import com.br.social.action.interest.services.create.CreateSocialActionService;
-import com.br.social.action.interest.services.delete.DeleteSocialActionRequest;
-import com.br.social.action.interest.services.delete.DeleteSocialActionResponse;
-import com.br.social.action.interest.services.delete.DeleteSocialActionService;
+import com.br.social.action.interest.create.CreateSocialActionRequest;
+import com.br.social.action.interest.create.CreateSocialActionResponse;
+import com.br.social.action.interest.create.CreateSocialActionService;
+import com.br.social.action.interest.delete.DeleteSocialActionRequest;
+import com.br.social.action.interest.delete.DeleteSocialActionResponse;
+import com.br.social.action.interest.delete.DeleteSocialActionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -34,18 +34,18 @@ public class SocialActionController {
     }
 
     @PostMapping
-    public EntityModel<?> create(@Valid @RequestBody CreateSocialActionRequest request) throws NotFoundException {
+    public EntityModel<?> create(@Valid @RequestBody CreateSocialActionRequest request) throws Exception {
         CreateSocialActionResponse response = createService.execute(request);
 
         return EntityModel.of(response,
                 linkTo(methodOn(SocialActionController.class).create(request)).withSelfRel(),
                 linkTo(methodOn(SocialActionController.class).findAll(request.name())).withRel("fetch"),
-                linkTo(methodOn(SocialActionController.class).delete(new DeleteSocialActionRequest(response.id()))).withRel("delete"));
+                linkTo(methodOn(SocialActionController.class).delete(response.id())).withRel("delete"));
     }
 
     @DeleteMapping("/{id}")
-    public EntityModel<?> delete(@PathVariable DeleteSocialActionRequest id) throws NotFoundException {
-        DeleteSocialActionResponse response = deleteService.execute(id);
+    public EntityModel<?> delete(@PathVariable Long id) throws NotFoundException {
+        DeleteSocialActionResponse response = deleteService.execute(new DeleteSocialActionRequest(id));
 
         return EntityModel.of(response,
                 linkTo(methodOn(SocialActionController.class).delete(id)).withSelfRel());

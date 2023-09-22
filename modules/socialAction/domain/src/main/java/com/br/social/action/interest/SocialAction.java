@@ -1,38 +1,37 @@
 package com.br.social.action.interest;
 
-import jakarta.persistence.*;
+public class SocialAction extends Entity {
+    private final Id id;
+    private final Name name;
+    private final Description description;
+    private final CreatedAt createdAt;
+    private final UpdatedAt updatedAt;
 
-import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "SOCIAL_ACTIONS", schema = "SOCIAL_ACTIONS")
-public class SocialAction {
-    @Id
-    @SequenceGenerator(name="SOCIAL_ACTIONS_SEQ", sequenceName="SOCIAL_ACTIONS_SEQ", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SOCIAL_ACTIONS_SEQ")
-    public Long id;
-
-    @Column(name = "name")
-    public String name;
-
-    @Column(name = "description")
-    public String description;
-
-    @Column(name = "created_at")
-    public LocalDateTime created_at;
-
-    @Column(name = "updated_at")
-    public LocalDateTime updated_at;
-
-    public static SocialAction create(String name, String description) {
-        SocialAction socialAction = new SocialAction();
-        socialAction.name = name;
-        socialAction.description = description;
-        socialAction.created_at = LocalDateTime.now();
-        return socialAction;
+    public SocialAction(Id id, Name name, Description description, CreatedAt createdAt, UpdatedAt updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public Long getId() {
+    public Id getId() {
         return id;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Description getDescription() {
+        return description;
+    }
+
+    public CreatedAt getCreatedAt() {
+        return createdAt;
+    }
+
+    public UpdatedAt getUpdatedAt() {
+        return updatedAt;
     }
 }

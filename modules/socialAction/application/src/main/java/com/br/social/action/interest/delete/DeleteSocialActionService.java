@@ -1,6 +1,6 @@
-package com.br.social.action.interest.services.delete;
+package com.br.social.action.interest.delete;
 
-import com.br.social.action.interest.SocialAction;
+import com.br.social.action.interest.dtos.SocialActionDto;
 import com.br.social.action.interest.repositories.SocialActionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -15,7 +15,7 @@ public class DeleteSocialActionService {
     private SocialActionRepository repository;
 
     public DeleteSocialActionResponse execute(DeleteSocialActionRequest request) throws NotFoundException {
-        Optional<SocialAction> socialAction = repository.findById(request.id());
+        Optional<SocialActionDto> socialAction = repository.findById(request.id());
 
         if (socialAction.isEmpty()) throw new NotFoundException();
 

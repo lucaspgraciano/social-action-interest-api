@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.br.social.action.interest</groupId>
-        <artifactId>socialAction</artifactId>
+        <artifactId>modules-social-action</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>domain</artifactId>
+    <artifactId>modules-social-action-domain</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,4 +17,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.br.social.action.interest</groupId>
+            <artifactId>building-blocks-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

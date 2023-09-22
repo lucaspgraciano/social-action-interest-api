@@ -9,13 +9,13 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>socialAction</artifactId>
+    <artifactId>modules-social-action</artifactId>
     <packaging>pom</packaging>
+
     <modules>
-        <module>domain</module>
+        <module>application</module>
         <module>domain</module>
         <module>infrastructure</module>
-        <module>application</module>
     </modules>
 
     <properties>
