@@ -1,3 +1,5 @@
 package com.br.social.action.interest.create;
 
-public record CreateSocialActionResponse(Long id) {}
+import java.util.UUID;
+
+public record CreateSocialActionResponse(UUID id) {}

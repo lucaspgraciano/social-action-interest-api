@@ -1,5 +1,8 @@
 package com.br.social.action.interest;
 
+import com.br.social.action.interest.rules.BusinessRule;
+import com.br.social.action.interest.rules.BusinessRuleValidationException;
+
 public abstract class ValueObject<TType> {
 
     private TType value;

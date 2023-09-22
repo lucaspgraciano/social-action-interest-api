@@ -1,10 +1,13 @@
 package com.br.social.action.interest;
 
+
+import java.util.UUID;
+
 public abstract class BaseId {
 
-    private final Long value;
+    private final UUID value;
 
-    protected BaseId(Long value) throws Exception {
+    protected BaseId(UUID value) throws Exception {
         if (value == null) {
             throw new Exception("Id cannot be null");
         }
@@ -12,7 +15,7 @@ public abstract class BaseId {
         this.value = value;
     }
 
-    public Long getValue() {
+    public UUID getValue() {
         return value;
     }
 }

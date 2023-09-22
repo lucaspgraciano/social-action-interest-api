@@ -1,7 +1,7 @@
 package com.br.social.action.interest.configurations;
 
-import com.br.social.action.interest.BusinessRuleValidationException;
 import com.br.social.action.interest.exceptions.ErrorResponse;
+import com.br.social.action.interest.rules.BusinessRuleValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

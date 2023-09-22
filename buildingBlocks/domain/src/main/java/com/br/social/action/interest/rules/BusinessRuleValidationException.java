@@ -1,4 +1,4 @@
-package com.br.social.action.interest;
+package com.br.social.action.interest.rules;
 
 public class BusinessRuleValidationException extends Exception {
 

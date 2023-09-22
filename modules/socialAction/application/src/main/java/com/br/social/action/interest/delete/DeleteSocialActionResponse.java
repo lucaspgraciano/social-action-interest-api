@@ -1,3 +1,3 @@
 package com.br.social.action.interest.delete;
 
-public record DeleteSocialActionResponse(Long id) {}
+public record DeleteSocialActionResponse(String id) {}

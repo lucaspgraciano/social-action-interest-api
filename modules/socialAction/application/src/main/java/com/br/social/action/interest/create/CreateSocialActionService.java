@@ -6,6 +6,7 @@ import com.br.social.action.interest.repositories.SocialActionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @org.springframework.stereotype.Service
 public class CreateSocialActionService implements Service<CreateSocialActionRequest, CreateSocialActionResponse> {
@@ -15,14 +16,15 @@ public class CreateSocialActionService implements Service<CreateSocialActionRequ
 
     @Override
     public CreateSocialActionResponse execute(CreateSocialActionRequest request) throws Exception {
-        Id id = new Id(1L);
+        Id id = new Id(UUID.randomUUID());
         Name name = new Name(request.name());
         Description description = new Description(request.description());
         CreatedAt createdAt = new CreatedAt(LocalDateTime.now());
         UpdatedAt updatedAt = new UpdatedAt(null);
+        CompletedAt completedAt = new CompletedAt(null);
 
         SocialAction socialAction = repository
-                .save(SocialActionDto.toDto(new SocialAction(id, name, description, createdAt, updatedAt)))
+                .save(SocialActionDto.toDto(new SocialAction(id, name, description, createdAt, updatedAt, completedAt)))
                 .toEntity();
 
         return new CreateSocialActionResponse(socialAction.getId().getValue());

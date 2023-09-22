@@ -21,6 +21,6 @@ public class DeleteSocialActionService {
 
         repository.delete(socialAction.get());
 
-        return new DeleteSocialActionResponse(socialAction.get().getId());
+        return new DeleteSocialActionResponse(socialAction.get().getId().toString());
     }
 }

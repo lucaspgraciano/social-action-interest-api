@@ -1,7 +1,9 @@
 package com.br.social.action.interest;
 
+import java.util.UUID;
+
 public class Id extends BaseId {
-    public Id(Long value) throws Exception {
+    public Id(UUID value) throws Exception {
         super(value);
     }
 }

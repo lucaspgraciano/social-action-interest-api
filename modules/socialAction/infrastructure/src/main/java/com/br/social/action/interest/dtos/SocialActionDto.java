@@ -1,23 +1,21 @@
 package com.br.social.action.interest.dtos;
 
 import com.br.social.action.interest.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "SOCIAL_ACTIONS", schema = "SOCIAL_ACTIONS")
 public class SocialActionDto {
 
     @jakarta.persistence.Id
-    @SequenceGenerator(name="SOCIAL_ACTIONS_SEQ", sequenceName="SOCIAL_ACTIONS_SEQ", allocationSize=1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SOCIAL_ACTIONS_SEQ")
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    private UUID id;
 
     @Column(name = "name")
     private String name;
@@ -26,18 +24,23 @@ public class SocialActionDto {
     private String description;
 
     @Column(name = "created_at")
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
+
 
     public static SocialActionDto toDto(SocialAction entity) {
         SocialActionDto dto = new SocialActionDto();
-        dto.id = entity.getId().getValue();
+        dto.id = UUID.randomUUID();
         dto.name = entity.getName().getValue();
         dto.description = entity.getDescription().getValue();
-        dto.created_at = entity.getCreatedAt().getValue();
-        dto.updated_at = entity.getUpdatedAt().getValue();
+        dto.createdAt = entity.getCreatedAt().getValue();
+        dto.updatedAt = entity.getUpdatedAt().getValue();
+        dto.completedAt = entity.getCompletedAt().getValue();
         return dto;
     }
 
@@ -45,12 +48,13 @@ public class SocialActionDto {
         Id id = new Id(this.id);
         Name name = new Name(this.name);
         Description description = new Description(this.description);
-        CreatedAt createdAt = new CreatedAt(this.created_at);
-        UpdatedAt updatedAt = new UpdatedAt(this.updated_at);
-        return new SocialAction(id, name, description, createdAt, updatedAt);
+        CreatedAt createdAt = new CreatedAt(this.createdAt);
+        UpdatedAt updatedAt = new UpdatedAt(this.updatedAt);
+        CompletedAt completedAt = new CompletedAt(this.completedAt);
+        return new SocialAction(id, name, description, createdAt, updatedAt, completedAt);
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 }

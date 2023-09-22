@@ -1,7 +1,5 @@
 package com.br.social.action.interest.rules;
 
-import com.br.social.action.interest.BusinessRule;
-
 public class DescriptionCannotBeEmptyRule implements BusinessRule {
     private final String name;
 

@@ -13,7 +13,10 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import java.util.UUID;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 @RequestMapping("/social-actions")
@@ -44,7 +47,7 @@ public class SocialActionController {
     }
 
     @DeleteMapping("/{id}")
-    public EntityModel<?> delete(@PathVariable Long id) throws NotFoundException {
+    public EntityModel<?> delete(@PathVariable UUID id) throws NotFoundException {
         DeleteSocialActionResponse response = deleteService.execute(new DeleteSocialActionRequest(id));
 
         return EntityModel.of(response,
