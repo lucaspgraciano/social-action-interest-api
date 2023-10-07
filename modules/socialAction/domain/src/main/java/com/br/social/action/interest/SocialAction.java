@@ -1,19 +1,22 @@
 package com.br.social.action.interest;
 
-public class SocialAction extends Entity {
-    private final Id id;
-    private final Name name;
-    private final Description description;
-    private final CreatedAt createdAt;
-    private final UpdatedAt updatedAt;
-    private final CompletedAt completedAt;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
-    public SocialAction(Id id,
-                        Name name,
-                        Description description,
-                        CreatedAt createdAt,
-                        UpdatedAt updatedAt,
-                        CompletedAt completedAt) {
+public class SocialAction {
+    private final UUID id;
+    private final String name;
+    private final String description;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
+    private final LocalDateTime completedAt;
+
+    public SocialAction(UUID id,
+                        String name,
+                        String description,
+                        LocalDateTime createdAt,
+                        LocalDateTime updatedAt,
+                        LocalDateTime completedAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -22,25 +25,25 @@ public class SocialAction extends Entity {
         this.completedAt = completedAt;
     }
 
-    public Id getId() {
+    public UUID getId() {
         return id;
     }
 
-    public Name getName() {
+    public String getName() {
         return name;
     }
 
-    public Description getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public CreatedAt getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public UpdatedAt getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public CompletedAt getCompletedAt() { return completedAt; }
+    public LocalDateTime getCompletedAt() { return completedAt; }
 }
