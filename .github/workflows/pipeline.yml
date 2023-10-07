@@ -14,14 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: SETUP JDK
+      - name: Setup JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: INSTALL DEPENDENCIES
-        run: mvn install
-
-      - name: TEST
+      - name: Maven clean install
+        run: mvn clean install
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Unit tests
         run: mvn --batch-mode --update-snapshots verify
