@@ -15,19 +15,20 @@ public class CreateSocialActionService implements Service<CreateSocialActionRequ
     private SocialActionRepository repository;
 
     @Override
-    public CreateSocialActionResponse execute(CreateSocialActionRequest request) throws Exception {
-        Id id = new Id(UUID.randomUUID());
-        Name name = new Name(request.name());
-        Description description = new Description(request.description());
-        CreatedAt createdAt = new CreatedAt(LocalDateTime.now());
-        UpdatedAt updatedAt = new UpdatedAt(null);
-        CompletedAt completedAt = new CompletedAt(null);
-
+    public CreateSocialActionResponse execute(CreateSocialActionRequest request) {
         SocialAction socialAction = repository
-                .save(SocialActionDto.toDto(new SocialAction(id, name, description, createdAt, updatedAt, completedAt)))
+                .save(SocialActionDto.toDto(
+                        new SocialAction(
+                                UUID.randomUUID(),
+                                request.name(),
+                                request.description(),
+                                LocalDateTime.now(),
+                                null,
+                                null
+                        )))
                 .toEntity();
 
-        return new CreateSocialActionResponse(socialAction.getId().getValue());
+        return new CreateSocialActionResponse(socialAction.getId());
 
     }
 
