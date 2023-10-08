@@ -36,11 +36,11 @@ public class SocialActionDto {
     public static SocialActionDto toDto(SocialAction entity) {
         SocialActionDto dto = new SocialActionDto();
         dto.id = UUID.randomUUID();
-        dto.name = entity.getName();
-        dto.description = entity.getDescription();
-        dto.createdAt = entity.getCreatedAt();
-        dto.updatedAt = entity.getUpdatedAt();
-        dto.completedAt = entity.getCompletedAt();
+        dto.name = entity.name();
+        dto.description = entity.description();
+        dto.createdAt = entity.createdAt();
+        dto.updatedAt = entity.updatedAt();
+        dto.completedAt = entity.completedAt();
         return dto;
     }
 

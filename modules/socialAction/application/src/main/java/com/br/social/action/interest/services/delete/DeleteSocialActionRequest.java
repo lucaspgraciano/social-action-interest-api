@@ -1,4 +1,4 @@
-package com.br.social.action.interest.delete;
+package com.br.social.action.interest.services.delete;
 
 import java.util.UUID;
 

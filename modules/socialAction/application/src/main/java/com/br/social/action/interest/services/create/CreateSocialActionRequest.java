@@ -1,3 +1,3 @@
-package com.br.social.action.interest.create;
+package com.br.social.action.interest.services.create;
 
 public record CreateSocialActionRequest(String name, String description) {}

@@ -1,4 +1,4 @@
-package com.br.social.action.interest.create;
+package com.br.social.action.interest.services.create;
 
 import java.util.UUID;
 

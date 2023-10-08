@@ -1,16 +1,17 @@
 package com.br.social.action.interest.modules.socialAction;
 
-import com.br.social.action.interest.create.CreateSocialActionRequest;
-import com.br.social.action.interest.create.CreateSocialActionResponse;
-import com.br.social.action.interest.create.CreateSocialActionService;
-import com.br.social.action.interest.delete.DeleteSocialActionRequest;
-import com.br.social.action.interest.delete.DeleteSocialActionResponse;
-import com.br.social.action.interest.delete.DeleteSocialActionService;
+import com.br.social.action.interest.services.create.CreateSocialActionRequest;
+import com.br.social.action.interest.services.create.CreateSocialActionResponse;
+import com.br.social.action.interest.services.create.CreateSocialActionService;
+import com.br.social.action.interest.services.delete.DeleteSocialActionRequest;
+import com.br.social.action.interest.services.delete.DeleteSocialActionResponse;
+import com.br.social.action.interest.services.delete.DeleteSocialActionService;
+import com.br.social.action.interest.services.fetch.FetchSocialActionRequest;
+import com.br.social.action.interest.services.fetch.FetchSocialActionResponse;
+import com.br.social.action.interest.services.fetch.FetchSocialActionService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -24,16 +25,24 @@ public class SocialActionController {
 
     private final CreateSocialActionService createService;
     private final DeleteSocialActionService deleteService;
+    private final FetchSocialActionService fetchService;
 
-    @Autowired
-    public SocialActionController(CreateSocialActionService createService, DeleteSocialActionService deleteService) {
+    public SocialActionController(
+            CreateSocialActionService createService,
+            DeleteSocialActionService deleteService,
+            FetchSocialActionService fetchService) {
         this.createService = createService;
         this.deleteService = deleteService;
+        this.fetchService = fetchService;
     }
 
     @GetMapping
-    public ResponseEntity<?> findAll(@RequestParam(name = "name", required = false, defaultValue = "") String name) {
-        return ResponseEntity.ok("Hello World! " + name);
+    public EntityModel<?> findAll(@RequestParam(name = "name", required = false, defaultValue = "") FetchSocialActionRequest request) throws NotFoundException {
+        FetchSocialActionResponse response = fetchService.execute(request);
+
+        return EntityModel.of(response,
+                linkTo(methodOn(SocialActionController.class).findAll(request)).withSelfRel(),
+                linkTo(methodOn(SocialActionController.class).delete(UUID.randomUUID())).withRel("delete"));
     }
 
     @PostMapping
@@ -42,7 +51,7 @@ public class SocialActionController {
 
         return EntityModel.of(response,
                 linkTo(methodOn(SocialActionController.class).create(request)).withSelfRel(),
-                linkTo(methodOn(SocialActionController.class).findAll(request.name())).withRel("fetch"),
+                linkTo(methodOn(SocialActionController.class).findAll(new FetchSocialActionRequest(request.name()))).withRel("fetch"),
                 linkTo(methodOn(SocialActionController.class).delete(response.id())).withRel("delete"));
     }
 

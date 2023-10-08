@@ -1,18 +1,18 @@
-package com.br.social.action.interest.create;
+package com.br.social.action.interest.services.create;
 
-import com.br.social.action.interest.*;
+import com.br.social.action.interest.Service;
+import com.br.social.action.interest.SocialAction;
 import com.br.social.action.interest.dtos.SocialActionDto;
 import com.br.social.action.interest.repositories.SocialActionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @org.springframework.stereotype.Service
 public class CreateSocialActionService implements Service<CreateSocialActionRequest, CreateSocialActionResponse> {
+    private final SocialActionRepository repository;
 
-    @Autowired
-    private SocialActionRepository repository;
+    public CreateSocialActionService(SocialActionRepository repository) { this.repository = repository; }
 
     @Override
     public CreateSocialActionResponse execute(CreateSocialActionRequest request) {
@@ -28,7 +28,7 @@ public class CreateSocialActionService implements Service<CreateSocialActionRequ
                         )))
                 .toEntity();
 
-        return new CreateSocialActionResponse(socialAction.getId());
+        return new CreateSocialActionResponse(socialAction.id());
 
     }
 
